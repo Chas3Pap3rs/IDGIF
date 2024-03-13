@@ -8,8 +8,51 @@
 </head>
 
 <body>
+    <div class="container">
 
-    <div class="main">
+        <div class="site-logo">
+
+
+        </div>
+        
+
+        <div class="search-nav">
+            <form action="">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+                <button type="submit">Random</button>
+            </form>
+
+        </div>
+        
+        
+        <div class="results">
+
+
+        </div>
+
+
+
+    </div>
+    
+    
+    <script>
+        const q = 'cats'
+        const apikey = 'b6Ovqn1dLBbx488ZoH6TvsQckxHYvn1r'
+        const path = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${q}`
+
+        fetch(path).then(function (res) {
+            return res.json() 
+        }).then(function (json) {
+            console.log(json)
+        }).catch(function (err) {
+            console.log(err.message)
+        });
+
+    </script>
+    
+    
+    <!-- <div class="main">
     <img src="./images/1_0zLhf1tWgwEXmb-Kph30Uw.png" alt="Google Logo" width="400px" class="logo">
 
 
@@ -22,8 +65,9 @@
 
         </div>
 
-    </div>
+    </div> -->
 
+    <!-- <script src="./idgif.js"></script> -->
     
 </body>
 </html>
