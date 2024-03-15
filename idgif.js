@@ -8,6 +8,14 @@ searchForm.addEventListener('submit', function(e) {
 
 })
 
+// searchForm.addEventListener('random', function(e) {
+//     e.preventDefault()
+//     const r = 'random'
+//     random(r)
+// })
+
+
+
 function search(q) {
     const apikey = 'b6Ovqn1dLBbx488ZoH6TvsQckxHYvn1r'
     const path = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${q}`
@@ -38,5 +46,34 @@ function search(q) {
     });
 }
 
+// function random(r) {
+//     const apikey = 'b6Ovqn1dLBbx488ZoH6TvsQckxHYvn1r'
+//     const path = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=random`
+//     const resultsElem = document.getElementById('results')
+
+//     fetch(path).then(function (res) {
+//         return res.json() 
+//     }).then(function (json) {
+//         console.log(json.data[0].images.fixed_width.url)
+        
+//         let resultsHTML = ''
+//         json.data.forEach(function (obj) {
+//             console.log(obj.images.fixed_width.url)
+//             const url = obj.images.fixed_width.url
+//             const width = obj.images.fixed_width.width
+//             const height = obj.images.fixed_width.height
+//             const title = obj.title
+//             resultsHTML += `<img 
+//                 src="${url}" 
+//                 width=${width} 
+//                 height="${height}"
+//                 alt="${obj.title}">`
+//         })
+
+//         resultsElem.innerHTML = resultsHTML
+//     }).catch(function (err) {
+//         console.log(err.message)
+//     });
+// }
 
 
