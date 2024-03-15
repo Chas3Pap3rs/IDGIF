@@ -1,73 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDGIF | No F*cks, Just GIF's</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IDGIF | No F*cks, Just GIF's</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-<body>
-    <div class="container">
+    <body>
+        <div class="container">
 
-        <div class="site-logo">
+            <div class="site-logo">
+
+
+            </div>
+            
+
+            <div class="search-nav">
+                <form id="search-form">
+                    <input id="search-input" type="text" placeholder="Search...">
+                    <button type="submit">Search</button>
+                    <button type="submit">Random</button>
+                </form>
+
+            </div>
+            
+            
+            <div id="results" class="results">
+                <!-- gif images here -->
+
+            </div>
+
 
 
         </div>
         
 
-        <div class="search-nav">
-            <form action="">
-                <input type="text" placeholder="Search...">
-                <button type="submit">Search</button>
-                <button type="submit">Random</button>
-            </form>
-
-        </div>
+        <script src="./idgif.js"></script>
         
-        
-        <div class="results">
-
-
-        </div>
-
-
-
-    </div>
-    
-    
-    <script>
-        const q = 'cats'
-        const apikey = 'b6Ovqn1dLBbx488ZoH6TvsQckxHYvn1r'
-        const path = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${q}`
-
-        fetch(path).then(function (res) {
-            return res.json() 
-        }).then(function (json) {
-            console.log(json)
-        }).catch(function (err) {
-            console.log(err.message)
-        });
-
-    </script>
-    
-    
-    <!-- <div class="main">
-    <img src="./images/1_0zLhf1tWgwEXmb-Kph30Uw.png" alt="Google Logo" width="400px" class="logo">
-
-
-        <input class="search-box" type="search" id="query" name="q" placeholder="Search...">
-
-        <div class="btn-wrapper">
-        <button class="btn">Google Search</button>
-        <button class="btn">I'm Feeling Lucky</button>
-
-
-        </div>
-
-    </div> -->
-
-    <!-- <script src="./idgif.js"></script> -->
-    
-</body>
+    </body>
 </html>
