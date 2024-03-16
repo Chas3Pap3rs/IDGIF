@@ -6,8 +6,8 @@ body {
     text-align: center;
     font-family: "Madimi One", sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .container {

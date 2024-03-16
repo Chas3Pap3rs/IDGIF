@@ -1,26 +1,39 @@
 const searchForm = document.getElementById("search-form")
 const searchInput = document.getElementById("search-input")
 const randomButton = document.getElementById("random")
+const urlParams = new URLSearchParams(window.location.search);
+const searchQuery = urlParams.get('q');
+
+function initSearch() {
+    if (searchQuery) {
+      search(searchQuery, 'results');
+    }
+  }
 
 searchForm.addEventListener('submit', function(e) {
     e.preventDefault()
     const q = searchInput.value
-    search(q)
+    // search(q)
+    const searchPage = 'search-page.html?q=' + encodeURIComponent(q);
+    window.location.href = searchPage;
 
 })
 
 randomButton.addEventListener('click', function(e) {
     e.preventDefault()
-    let r = 'random'
-    search(r)
+    // let r = 'random'
+    // search(r)
+    const searchQuery = 'random';  // Set searchQuery to 'random'
+    const searchPage = 'search-page.html?q=' + encodeURIComponent(searchQuery);
+    window.location.href = searchPage;
 })
 
 
 
-function search(q) {
+function search(q, target = 'results') {
     const apikey = 'b6Ovqn1dLBbx488ZoH6TvsQckxHYvn1r'
     const path = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${q}`
-    const resultsElem = document.getElementById('results')
+    const resultsElem = document.getElementById(target)
 
     fetch(path).then(function (res) {
         return res.json() 
