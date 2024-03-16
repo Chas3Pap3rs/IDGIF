@@ -9,10 +9,10 @@ searchForm.addEventListener('submit', function(e) {
 
 })
 
-randomButton.addEventListener('random', function(e) {
+randomButton.addEventListener('click', function(e) {
     e.preventDefault()
-    const q = 'random'
-    search(q)
+    let r = 'random'
+    search(r)
 })
 
 
