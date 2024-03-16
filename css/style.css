@@ -1,10 +1,27 @@
+
+
 body {
-    background-color: ;
+    border: orange 1px solid;
+    background-color: #313638;
+    text-align: center;
+    font-family: "Madimi One", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    width: calc(200px * 4 + 1em);
-    margin: auto;
+    width: calc(200px * 4 + 4em);
+    margin: auto;    
+}
+
+.nav-dash{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .results {
@@ -17,6 +34,20 @@ body {
     margin-bottom: 1em;
 }
 
-.idgif-logo {
-    width: 100px;
+.madimi-one-regular {
+    font-family: "Madimi One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
+
+.btn {
+    background-color: transparent;
+    border-radius: 5px;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    font-family: "Madimi One", sans-serif;
+}
+
+  

@@ -1,5 +1,6 @@
 const searchForm = document.getElementById("search-form")
 const searchInput = document.getElementById("search-input")
+const randomButton = document.getElementById("random")
 
 searchForm.addEventListener('submit', function(e) {
     e.preventDefault()
@@ -8,11 +9,11 @@ searchForm.addEventListener('submit', function(e) {
 
 })
 
-// searchForm.addEventListener('random', function(e) {
-//     e.preventDefault()
-//     const r = 'random'
-//     random(r)
-// })
+randomButton.addEventListener('random', function(e) {
+    e.preventDefault()
+    const q = 'random'
+    search(q)
+})
 
 
 
@@ -34,6 +35,7 @@ function search(q) {
             const height = obj.images.fixed_width.height
             const title = obj.title
             resultsHTML += `<img 
+                class="item"
                 src="${url}" 
                 width=${width} 
                 height="${height}"
