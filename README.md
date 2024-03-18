@@ -14,5 +14,5 @@ Technology Used:
 Ideas for future improvements:
     1. Make clicking the image/gif copy the image/gif and ensure someone can paste it with the gif working as expected.
     2. Add a search for Stickers via Giphy
-    3. 
+    3. Make the "Random" selection/button start utilizing another API that generates random words (Like the one by API Ninjas, herokuapp, etc) so that the 2nd time and on that a user clicks "Random" new results are shown.
 
