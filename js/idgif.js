@@ -13,9 +13,13 @@ function initSearch() {
 searchForm.addEventListener('submit', function(e) {
     e.preventDefault()
     const q = searchInput.value
-    // search(q)
-    const searchPage = 'search-page.html?q=' + encodeURIComponent(q);
-    window.location.href = searchPage;
+
+    if (q.trim() === '') {
+        alert('Please enter what you want to search')
+    } else {
+        const searchPage = 'search-page.html?q=' + encodeURIComponent(q);
+        window.location.href = searchPage;
+    }
 
 })
 
