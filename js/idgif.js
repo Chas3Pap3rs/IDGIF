@@ -32,6 +32,24 @@ randomButton.addEventListener('click', function(e) {
     window.location.href = searchPage;
 })
 
+function copyImageURL(imageElement) {
+    const imageURL = imageElement.src;
+    navigator.clipboard.writeText(imageURL)
+        .then(() => {
+            alert('Image URL copied to clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to copy image URL: ', err);
+            console.warn('Image copying might not be supported in this browser.');
+        });
+
+
+
+        setTimeout(() => {
+            messageContainer.style.display = 'none';
+        }, 1000); // Hide after 1 second
+}
+
 
 
 function search(q, target = 'results') {
@@ -60,39 +78,25 @@ function search(q, target = 'results') {
         })
 
         resultsElem.innerHTML = resultsHTML
+
+        const imageElements = resultsElem.getElementsByTagName('img');
+            for (let i = 0; i < imageElements.length; i++) {
+            imageElements[i].addEventListener('click', function () {
+            copyImageURL(this); // Call the copyImageURL function for each image
+            });
+        }
+
     }).catch(function (err) {
         console.log(err.message)
     });
+
+    const messageContainer = document.createElement('div');
+    messageContainer.classList.add('message-container'); // Add a CSS class for styling (optional)
+    messageContainer.style.display = 'none'; // Initially hide the message container
+    resultsElem.appendChild(messageContainer);
+
 }
 
-// function random(r) {
-//     const apikey = 'b6Ovqn1dLBbx488ZoH6TvsQckxHYvn1r'
-//     const path = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=random`
-//     const resultsElem = document.getElementById('results')
 
-//     fetch(path).then(function (res) {
-//         return res.json() 
-//     }).then(function (json) {
-//         console.log(json.data[0].images.fixed_width.url)
-        
-//         let resultsHTML = ''
-//         json.data.forEach(function (obj) {
-//             console.log(obj.images.fixed_width.url)
-//             const url = obj.images.fixed_width.url
-//             const width = obj.images.fixed_width.width
-//             const height = obj.images.fixed_width.height
-//             const title = obj.title
-//             resultsHTML += `<img 
-//                 src="${url}" 
-//                 width=${width} 
-//                 height="${height}"
-//                 alt="${obj.title}">`
-//         })
-
-//         resultsElem.innerHTML = resultsHTML
-//     }).catch(function (err) {
-//         console.log(err.message)
-//     });
-// }
 
 

@@ -41,6 +41,11 @@ body {
     user-select: none;
 }
 
+.btn:hover {
+    color: gold;
+    background-color: gray; 
+}
+
 h1 {
     user-select: none;
     color: white;
