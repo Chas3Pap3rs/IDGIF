@@ -8,6 +8,8 @@
     margin-bottom: 1em;
     border-radius: 10px;
     width: calc(200px * 4 + 2em);
+    height: auto;
+
 }
 
 .container {
