@@ -58,6 +58,11 @@
     font-family: "Madimi One", sans-serif;
 }
 
+.navbar-toggler:hover, 
+.navbar-toggler:focus {  
+    color: gold; 
+}
+
 .navbar-brand,
 .navbar-nav .nav-link,
 .navbar-nav .nav-link.active,
@@ -70,7 +75,7 @@
 .navbar-toggler:hover, .navbar-toggler.collapsed:hover,
 .navbar-brand:hover, .btn:hover { 
     color: gold;
-}
+} 
 
 
 .madimi-one-regular {
