@@ -1,8 +1,3 @@
-// Get references to DOM elements
-const searchForm = document.getElementById("search-form");
-const searchInput = document.getElementById("search-input");
-const randomButton = document.getElementById("random");
-
 // Get search query from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 const searchQuery = urlParams.get('q');
@@ -14,25 +9,37 @@ function initSearch() {
   }
 }
 
-// Event listener for search form submission
-searchForm.addEventListener('submit', function(e) {
-  e.preventDefault(); // Prevent default form submission
-  const q = searchInput.value;
+// Initialize homepage search functionality
+function initializeHomeSearch() {
+  const searchForm = document.getElementById('search-form');
+  const searchInput = document.getElementById('search-input');
+  const randomButton = document.getElementById('random');
 
-  if (q.trim() === '') {
-    alert('Please enter what you want to search');
-  } else {
-    const searchPage = 'search-page.html?q=' + encodeURIComponent(q);
-    window.location.href = searchPage; // Redirect to search page with encoded query
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const q = searchInput.value;
+
+      if (q.trim() === '') {
+        alert('Please enter what you want to search');
+        return;
+      }
+
+      window.location.href = 'search-page.html?q=' + encodeURIComponent(q);
+    });
   }
-});
 
-// Event listener for random button click
-randomButton.addEventListener('click', function(e) {
-  e.preventDefault();
-  const searchQuery = 'random'; // Set search query to 'random' for a random search
-  const searchPage = 'search-page.html?q=' + encodeURIComponent(searchQuery);
-  window.location.href = searchPage; // Redirect to search page
+  if (randomButton) {
+    randomButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'search-page.html?q=random';
+    });
+  }
+}
+
+// Call initialization on page load
+document.addEventListener('DOMContentLoaded', function() {
+  initializeHomeSearch();
 });
 
 // Function to copy the image URL to the clipboard upon click

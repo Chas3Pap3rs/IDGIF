@@ -1,7 +1,7 @@
 
 
 body {
-    background-color: #212529;
+    background-color: #f7d4c2;
     text-align: center;
     font-family: "Madimi One", sans-serif;
     display: flex;
@@ -25,6 +25,32 @@ body {
   padding-bottom: 100px;
 }
 
+#search-input {
+    width: 300px;
+    margin-bottom: 10px;
+    background-color: #fcf0ec;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 16px;
+    font-family: "Madimi One", sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    height: 38px;
+}
+
+#search-input::placeholder {
+    color: #f7d4c2;
+    opacity: 1;
+}
+
+#search-input:focus {
+    background-color: #fcf0ec;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: #e9814a;
+    outline: none;
+}
+
 
 .madimi-one-regular {
     font-family: "Madimi One", sans-serif;
@@ -32,18 +58,72 @@ body {
     font-style: normal;
 }
 
+/* Soft, modern search input styling */
+.form-control {
+    background-color: #fcf0ec;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 16px;
+    font-family: "Madimi One", sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    height: 38px;
+}
+
+/* Homepage specific search input styling */
+.nav-dash .form-control {
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.form-control::placeholder {
+    color: #f7d4c2;
+    opacity: 1;
+}
+
+.form-control:focus {
+    background-color: #fcf0ec;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: #e9814a;
+    outline: none;
+}
+
+.form-control:not(:placeholder-shown) {
+    color: #e9814a;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
 .btn {
-    background-color: transparent;
-    border-radius: 5px;
+    background-color: #f7d4c2;
+    border-radius: 8px;
+    border: 1px solid rgba(233, 129, 74, 0.2);
     margin: 5px;
-    color: white;
+    color: #e9814a;
     font-family: "Madimi One", sans-serif;
     user-select: none;
+    padding: 8px 16px;
+    box-shadow: 0 4px 0 #e5b5a0,
+              0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    transition: all 0.1s ease;
+    position: relative;
 }
 
 .btn:hover {
-    color: gold;
-    background-color: gray; 
+    transform: translateY(-2px);
+    box-shadow: 0 2px 0 #e5b5a0,
+              0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 0 #e5b5a0,
+              0 0 2px rgba(0, 0, 0, 0.1);
+    background-color: #f5cbb7;
 }
 
 h1 {

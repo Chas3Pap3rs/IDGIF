@@ -1,0 +1,37 @@
+<!-- IDGIF Navigation Bar Component -->
+<nav class="navbar navbar-expand-md" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../pages/index.html">
+      <div class="logo-container">
+        <img src="../images/still-and-spin-idgif-logo.jpg" alt="Logo" class="d-inline-block">
+      </div>
+      <span class="brand-text">IDGIF</span>
+    </a>
+    <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-caret-down"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../pages/index.html">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://giphy.com/">GIPHY</a></li>
+            <li><a class="dropdown-item" href="https://tenor.com/">Tenor</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="https://support.giphy.com/hc/en-us/articles/360019674452-How-To-Make-A-GIF-on-Desktop">Making GIF's</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form id="search-form" class="d-flex" role="search">
+        <input class="form-control me-2" id="search-input" type="search" placeholder="Search..." aria-label="Search">
+        <button class="btn me-1" id="submit" type="submit">Search</button>
+        <button class="btn" id="random" type="random">Random</button>
+      </form>
+    </div>
+  </div>
+</nav>
