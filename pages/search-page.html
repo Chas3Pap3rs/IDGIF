@@ -12,7 +12,11 @@
             rel="stylesheet" 
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
-      <link rel="stylesheet" href="../css/sp-style.css">
+      <script>
+          // Dynamically set the base path for assets
+          const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '..' : '';
+          document.write(`<link rel="stylesheet" href="${base}/css/sp-style.css">`);
+      </script>
   </head>
 
   <body>
@@ -25,11 +29,19 @@
         </div>
     </div>
       
-    <script src="../js/components.js"></script>
-    <script src="../js/idgif.js"></script>
+    <script>
+        // Dynamically set the base path for scripts
+        const scriptBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '..' : '';
+        document.write(`
+            <script src="${scriptBase}/js/config.js"><\/script>
+            <script src="${scriptBase}/js/components.js"><\/script>
+            <script src="${scriptBase}/js/idgif.js"><\/script>
+        `);
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('navbar-container', '../components/navbar.html');
+            const componentPath = config.isProduction ? '/components/navbar.html' : '../components/navbar.html';
+            loadComponent('navbar-container', componentPath);
             initSearch();
         });
     </script>

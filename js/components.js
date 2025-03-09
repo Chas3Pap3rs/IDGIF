@@ -25,13 +25,12 @@ async function loadComponent(elementId, componentPath) {
                 }
 
                 // Check if we're already on the search page
-                if (window.location.pathname.includes('search-page.html')) {
+                if (window.location.pathname.includes('search-page.html') || window.location.pathname.endsWith('/search')) {
                     // If on search page, perform the search directly
                     search(q, 'results');
                 } else {
                     // If not on search page, redirect to it
-                    const searchPage = 'search-page.html?q=' + encodeURIComponent(q);
-                    window.location.href = searchPage;
+                    window.location.href = config.getSearchPageUrl(q);
                 }
             });
 
@@ -41,13 +40,12 @@ async function loadComponent(elementId, componentPath) {
                 const searchQuery = 'random';
 
                 // Check if we're already on the search page
-                if (window.location.pathname.includes('search-page.html')) {
+                if (window.location.pathname.includes('search-page.html') || window.location.pathname.endsWith('/search')) {
                     // If on search page, perform the search directly
                     search(searchQuery, 'results');
                 } else {
                     // If not on search page, redirect to it
-                    const searchPage = 'search-page.html?q=' + encodeURIComponent(searchQuery);
-                    window.location.href = searchPage;
+                    window.location.href = config.getSearchPageUrl(searchQuery);
                 }
             });
         }

@@ -5,7 +5,7 @@ const searchQuery = urlParams.get('q');
 // Function to perform initial search if a query is present in the URL
 function initSearch() {
   if (searchQuery) {
-    search(searchQuery, 'results'); // Call the search function with the query
+    search(searchQuery, 'results');
   }
 }
 
@@ -25,14 +25,14 @@ function initializeHomeSearch() {
         return;
       }
 
-      window.location.href = 'search-page.html?q=' + encodeURIComponent(q);
+      window.location.href = config.getSearchPageUrl(q);
     });
   }
 
   if (randomButton) {
     randomButton.addEventListener('click', function(e) {
       e.preventDefault();
-      window.location.href = 'search-page.html?q=random';
+      window.location.href = config.getSearchPageUrl('random');
     });
   }
 }
