@@ -97,4 +97,3 @@ function search(q, target = 'results') {
       console.log(err.message);
     });
 }
-
