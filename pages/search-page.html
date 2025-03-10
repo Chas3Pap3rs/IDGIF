@@ -12,10 +12,13 @@
             rel="stylesheet" 
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
+      <script src="../js/config.js"></script>
       <script>
-          // Dynamically set the base path for assets
-          const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '..' : '';
-          document.write(`<link rel="stylesheet" href="${base}/css/sp-style.css">`);
+          // Add the stylesheet using the same config system as other paths
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = `${config.getBaseUrl()}/css/sp-style.css`;
+          document.head.appendChild(link);
       </script>
   </head>
 
