@@ -46,6 +46,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             const componentPath = config.isProduction ? '/components/navbar.html' : '../components/navbar.html';
             loadComponent('navbar-container', componentPath);
+            
+            // Update API attribution based on current API preference
+            const currentAPI = localStorage.getItem('preferredAPI') || 'GIPHY';
+            const attribution = document.querySelector('.powered-by p');
+            if (attribution) {
+                attribution.textContent = `Powered by ${currentAPI}`;
+            }
+            
             initSearch();
         });
     </script>
