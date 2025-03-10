@@ -34,18 +34,58 @@ async function loadComponent(elementId, componentPath) {
                 }
             });
 
+            // Function to get a random word and perform search
+            async function getRandomWordAndSearch() {
+                try {
+                    const response = await fetch('https://random-word-api.vercel.app/api?words=1');
+                    const [randomWord] = await response.json();
+                    
+                    // Update the URL with the random word
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set('q', randomWord);
+                    window.history.pushState({}, '', newUrl);
+                    
+                    // Update the search input with the random word
+                    searchInput.value = randomWord;
+                    
+                    // Set random state to used
+                    localStorage.setItem('randomState', 'used');
+                    
+                    // Perform the search
+                    search(randomWord, 'results');
+                } catch (error) {
+                    console.error('Error fetching random word:', error);
+                    // Fallback to 'random' if API fails
+                    search('random', 'results');
+                }
+            }
+
             // Event listener for random button click
             randomButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                const searchQuery = 'random';
+                
+                // Get the current random state
+                const randomState = localStorage.getItem('randomState') || 'initial';
+                console.log('Current random state:', randomState);
 
                 // Check if we're already on the search page
                 if (window.location.pathname.includes('search-page.html') || window.location.pathname.endsWith('/search')) {
-                    // If on search page, perform the search directly
-                    search(searchQuery, 'results');
+                    if (randomState === 'initial' && searchQuery !== 'random') {
+                        // First time using random: search for 'random'
+                        console.log('First random search, searching "random"');
+                        search('random', 'results');
+                        localStorage.setItem('randomState', 'searching');
+                    } else {
+                        // Subsequent clicks or continuing from home page: use random word API
+                        console.log('Using random word API');
+                        getRandomWordAndSearch();
+                    }
                 } else {
-                    // If not on search page, redirect to it
-                    window.location.href = config.getSearchPageUrl(searchQuery);
+                    // If not on search page, redirect to it with 'random'
+                    if (randomState === 'initial') {
+                        localStorage.setItem('randomState', 'searching');
+                    }
+                    window.location.href = config.getSearchPageUrl('random');
                 }
             });
         }

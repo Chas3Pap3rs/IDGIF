@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IDGIF | No F*cks, Just GIF's</title>
+        <link rel="icon" type="image/png" href="images/gif-logo-2.png">
+        <title>IDGIF | Just GIF It</title>
         <link rel="stylesheet" href="css/style.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +13,14 @@
     </head>
 
     <body>
+        <div class="api-switch">
+            <span class="api-label active">GIPHY</span>
+            <label class="switch">
+                <input type="checkbox" id="apiToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="api-label">Tenor</span>
+        </div>
         <div class="container">
             <div class="nav-dash">
                 <div class="site-logo">
@@ -29,6 +38,7 @@
                         </div>
                     </form>
                 </div>
+                <p class="powered-by">Powered by GIPHY</p>
             </div>    
                 
             <div id="results" class="results">
