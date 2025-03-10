@@ -141,7 +141,19 @@ function updateAPIStates(apiName) {
   // Update attribution text
   const attribution = document.querySelector('.powered-by');
   if (attribution) {
-    attribution.textContent = `Powered by ${apiName}`;
+    // Check if we're on the search page (nested p) or home page (direct p)
+    if (attribution.tagName.toLowerCase() === 'p') {
+      attribution.textContent = `Powered by ${apiName}`;
+    } else {
+      const p = attribution.querySelector('p');
+      if (p) p.textContent = `Powered by ${apiName}`;
+    }
+  }
+
+  // Update search placeholder
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.placeholder = `Search ${apiName}...`;
   }
 }
 

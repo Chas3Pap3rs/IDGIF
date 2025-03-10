@@ -13,6 +13,99 @@ async function loadComponent(elementId, componentPath) {
             const searchForm = document.getElementById('search-form');
             const searchInput = document.getElementById('search-input');
             const randomButton = document.getElementById('random');
+            
+            // Create API toggle with Shadow DOM
+            const toggleContainer = document.getElementById('api-toggle-container');
+            if (toggleContainer) {
+                const currentAPI = localStorage.getItem('preferredAPI') || 'GIPHY';
+                const toggle = document.createElement('div');
+                const shadow = toggle.attachShadow({mode: 'open'});
+                
+                // Add isolated styles
+                shadow.innerHTML = `
+                    <style>
+                        .api-toggle {
+                            display: flex;
+                            align-items: center;
+                            height: 38px; /* Match search input height */
+                            margin-top: 2px; /* Nudge down slightly */
+                        }
+                        .switch {
+                            position: relative;
+                            display: inline-block;
+                            width: 60px;
+                            height: 34px;
+                            margin: 2px;
+                        }
+                        .switch input {
+                            opacity: 0;
+                            width: 0;
+                            height: 0;
+                        }
+                        .slider {
+                            position: absolute;
+                            cursor: pointer;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: #f7d4c2;
+                            border: 2px solid #e9814a;
+                            transition: .4s;
+                            border-radius: 34px;
+                        }
+                        .slider:before {
+                            position: absolute;
+                            content: "G";
+                            height: 26px;
+                            width: 26px;
+                            left: 2px;
+                            bottom: 2px;
+                            background-color: #e9814a;
+                            transition: .4s;
+                            border-radius: 50%;
+                            color: #f7d4c2;
+                            font-family: "Madimi One", sans-serif;
+                            font-size: 0.9rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        input:checked + .slider:before {
+                            content: "T";
+                            transform: translateX(26px);
+                        }
+                    </style>
+                    <div class="api-toggle">
+                        <label class="switch">
+                            <input type="checkbox" ${currentAPI === 'TENOR' ? 'checked' : ''}>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                `;
+                
+                // Add event listener
+                const input = shadow.querySelector('input');
+                input.addEventListener('change', () => {
+                    const newAPI = input.checked ? 'TENOR' : 'GIPHY';
+                    localStorage.setItem('preferredAPI', newAPI);
+                    
+                    // Update search input placeholder
+                    if (searchInput) {
+                        searchInput.placeholder = `Search ${newAPI}...`;
+                    }
+                    
+                    // Let idgif.js handle the API state update
+                    switchAPI(newAPI);
+                });
+                
+                toggleContainer.appendChild(toggle);
+            }
+            
+            // Set initial search placeholder based on current API
+            if (searchInput) {
+                searchInput.placeholder = `Search ${currentAPI}...`;
+            }
 
             // Event listener for search form submission
             searchForm.addEventListener('submit', function(e) {
@@ -26,7 +119,12 @@ async function loadComponent(elementId, componentPath) {
 
                 // Check if we're already on the search page
                 if (window.location.pathname.includes('search-page.html') || window.location.pathname.endsWith('/search')) {
-                    // If on search page, perform the search directly
+                    // Update URL with new search term
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set('q', q);
+                    window.history.pushState({}, '', newUrl);
+                    
+                    // Perform the search directly
                     search(q, 'results');
                 } else {
                     // If not on search page, redirect to it
