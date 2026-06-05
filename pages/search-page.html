@@ -39,7 +39,7 @@
       
     <script>
         // Dynamically set the base path for scripts
-        const scriptBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '..' : '';
+        const scriptBase = config.getBaseUrl() || '..';
         document.write(`
             <script src="${scriptBase}/js/config.js"><\/script>
             <script src="${scriptBase}/js/components.js"><\/script>
@@ -48,7 +48,7 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const componentPath = config.isProduction ? '/components/navbar.html' : '../components/navbar.html';
+            const componentPath = config.isProduction ? `${config.getBaseUrl()}/components/navbar.html` : '../components/navbar.html';
             loadComponent('navbar-container', componentPath);
             
             // Update API attribution based on current API preference
