@@ -10,6 +10,17 @@ async function loadComponent(elementId, componentPath) {
 
         // If this is the navbar, initialize search functionality
         if (componentPath.includes('navbar.html')) {
+            // Fix paths for GitHub Pages
+            const baseUrl = config.getBaseUrl();
+            const navbarBrand = document.querySelector('.navbar-brand');
+            const logoImg = document.querySelector('.navbar-brand img');
+            if (navbarBrand) {
+                navbarBrand.href = baseUrl ? `${baseUrl}/` : '/';
+            }
+            if (logoImg) {
+                logoImg.src = `${baseUrl}/images/still-and-spin-idgif-logo.jpg`;
+            }
+            
             const searchForm = document.getElementById('search-form');
             const searchInput = document.getElementById('search-input');
             const randomButton = document.getElementById('random');
