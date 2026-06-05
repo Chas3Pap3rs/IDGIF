@@ -19,7 +19,9 @@ const config = {
 
     // Get the search page URL
     getSearchPageUrl: function(query = '') {
-        const base = this.isProduction ? '/search' : '/pages/search-page.html';
+        // Use direct file path for all environments
+        // (GitHub Pages and Caddy don't support .htaccess rewrites)
+        const base = '/pages/search-page.html';
         return `${this.getBaseUrl()}${base}${query ? '?q=' + encodeURIComponent(query) : ''}`;
     }
 };
