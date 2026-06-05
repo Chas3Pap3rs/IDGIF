@@ -37,7 +37,10 @@ jobs:
           ssh-keyscan -H $VPS_HOST >> ~/.ssh/known_hosts
           
           echo "Testing SSH connection..."
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "echo 'SSH connection successful'"
+          ssh -v -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "echo 'SSH connection successful'" 2>&1 || {
+            echo "SSH connection failed. Check your VPS_HOST, VPS_USER, and SSH key configuration."
+            exit 1
+          }
           
           echo "Starting rsync deployment..."
           rsync -avz --delete \
