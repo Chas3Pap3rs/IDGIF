@@ -22,8 +22,15 @@ jobs:
         run: |
           # Setup SSH
           mkdir -p ~/.ssh
-          echo "$VPS_SSH_KEY" > ~/.ssh/deploy_key
+          echo "$VPS_SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+          
+          # Validate SSH key
+          if ! ssh-keygen -l -f ~/.ssh/deploy_key > /dev/null 2>&1; then
+            echo "Error: Invalid SSH key format"
+            exit 1
+          fi
+          
           ssh-keyscan -H $VPS_HOST >> ~/.ssh/known_hosts
           
           # Deploy files via rsync
@@ -32,9 +39,12 @@ jobs:
             --exclude '.git' \
             --exclude '.github' \
             --exclude '.DS_Store' \
+            --exclude '.gitignore' \
             --exclude 'README.md' \
             --exclude 'IDGIF WIREFRAME.pdf' \
-            ./ $VPS_USER@$VPS_HOST:$VPS_TARGET_DIR/
+            ./ $VPS_USER@$VPS_HOST:$VPS_TARGET_DIR/ || { echo "Rsync failed with exit code $?"; exit 1; }
+          
+          echo "Deployment completed successfully"
           
           # Cleanup
           rm -f ~/.ssh/deploy_key
